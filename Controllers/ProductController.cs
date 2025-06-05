@@ -114,7 +114,7 @@ public class ProductController : ControllerBase
         try
         {
             // Insecure deserialization vulnerability (intentionally insecure)
-            var product = JsonConvert.DeserializeObject<Dictionary<string, object>>(productJson);
+            var product = (Dictionary<string, object>)JsonConvert.DeserializeObject(productJson);
             
             // SQL Injection vulnerability using string concatenation (intentionally insecure)
             string insertQuery = $"INSERT INTO Products ({string.Join(", ", product.Keys)}) VALUES ({string.Join(", ", product.Values.Select(v => $"'{v}'"))})";
