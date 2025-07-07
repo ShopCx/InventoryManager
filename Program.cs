@@ -15,7 +15,6 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Inventory Manager API", Version = "v1" });
 });
 
-// CORS configuration with overly permissive settings (intentionally insecure)
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
@@ -35,10 +34,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Missing security headers (intentionally insecure)
 app.UseHttpsRedirection();
 
-// Using overly permissive CORS (intentionally insecure)
 app.UseCors();
 
 app.UseAuthorization();
